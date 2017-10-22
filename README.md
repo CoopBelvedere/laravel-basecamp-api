@@ -12,8 +12,8 @@ Visit https://launchpad.37signals.com/integrations and register your app.
 
 The Basecamp3 API only supports 3-legged authentication and makes calls on
 behalf of one user. To receive an access token, you can use
-[Laravel Socialite](https://github.com/laravel/socialite) with our own
-[Basecamp Socialite Driver](https://github.com/coopbelvedere/basecamp-socialite-provider).
+[Laravel Socialite](https://github.com/laravel/socialite) with the
+[37signals Socialite Driver](http://socialiteproviders.github.io/providers/37signals/).
 After you save the access token and the desired Basecamp3 account, you can now
 create an instance of the API wrapper.
 
