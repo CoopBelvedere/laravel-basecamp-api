@@ -23,7 +23,7 @@ This example app should help you get started:
 ## Installation
 
 ```
-composer require belvedere/basecamp
+composer require coopbelvedere/laravel-basecamp-api
 php artisan vendor:publish --provider="Belvedere\Basecamp\BasecampServiceProvider"
 ```
 
