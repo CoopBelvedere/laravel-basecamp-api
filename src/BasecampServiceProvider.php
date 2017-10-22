@@ -2,7 +2,6 @@
 
 namespace Belvedere\Basecamp;
 
-use App\Basecamp\Exceptions\NoBasecampUserException;
 use Illuminate\Support\ServiceProvider;
 
 class BasecampServiceProvider extends ServiceProvider
