@@ -13,5 +13,5 @@ $vault = Basecamp::projects()->show($projectId)->vault();
 $vault->show();
 
 // Or
-$vault = Basecamp::vault($projectId)->show($id);
+$vault = Basecamp::vaults($projectId)->show($id);
 ```
