@@ -18,6 +18,9 @@
         }
     ],
     "autoload": {
+        "psr-4": {
+            "Belvedere\\Basecamp\\": "src/"
+        },
         "files": [
             "src/helpers.php"
         ]
