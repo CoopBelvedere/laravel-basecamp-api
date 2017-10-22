@@ -101,9 +101,9 @@ class ClientMiddlewares
             'form_params' => [
                 'type' => 'refresh',
                 'refresh_token' => $api['refresh_token'],
-                'client_id' => $config['services.basecamp.client_id'],
-                'client_secret' => $config['services.basecamp.client_secret'],
-                'redirect_uri' => $config['services.basecamp.redirect'],
+                'client_id' => $config['services.37signals.client_id'],
+                'client_secret' => $config['services.37signals.client_secret'],
+                'redirect_uri' => $config['services.37signals.redirect'],
             ],
         ]);
 
