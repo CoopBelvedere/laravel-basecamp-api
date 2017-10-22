@@ -68,7 +68,7 @@ $projectConstruction = $template->projectConstructions()->show($projectConstruct
 
 ```php
 // Polling 1 time per second for a maximum of 10 seconds.
-$projectConstruction = retry(10, function () use ($template) use ($id) {
+$projectConstruction = retry(10, function () use ($template, $id) {
     $projectConstruction = $template->projectConstructions()->show($id);
     if ($projectConstruction->status != 'completed') {
         throw new \Exception('Project not completed');
