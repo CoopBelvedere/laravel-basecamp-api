@@ -1,0 +1,35 @@
+{
+    "name": "coopbelvedere/laravel-basecamp-api",
+    "description": "API Wrapper for Basecamp3",
+    "require": {
+        "php": ">=7.0",
+        "ext-fileinfo": "*",
+        "illuminate/support": "^5.5",
+        "kevinrob/guzzle-cache-middleware": "^2.1",
+        "illuminate/cache": "^5.5",
+        "illuminate/filesystem": "^5.5",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Bastien",
+            "email": "mbastien@coopbelvedere.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Belvedere\\Basecamp\\BasecampServiceProvider"
+            ],
+            "aliases": {
+                "Basecamp": "Belvedere\\Basecamp\\BasecampFacade"
+            }
+        }
+    }
+}
