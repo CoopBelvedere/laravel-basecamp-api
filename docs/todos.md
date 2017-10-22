@@ -2,7 +2,7 @@
 
 ## List to-dos
 
-```
+```php
 // List all to-dos
 $todos = $todoList->todos()->index();
 
@@ -15,13 +15,13 @@ $todos = $todoList->todos()->trashed();
 
 ## Show a to-do
 
-```
+```php
 $todo = $todoList->todos()->show($id);
 ```
 
 ## Create a new to-do
 
-```
+```php
 $todo = $todoList()->todos()->store([
     'content' => 'Program it',
     'description' => '<div><em>Start it!</em></div>',
@@ -34,7 +34,7 @@ $todo = $todoList()->todos()->store([
 
 ## Update a to-do
 
-```
+```php
 $todo->update([
     'content' => 'Program it again',
     'description' => '<div><em>Finish it!</em></div>',
@@ -50,7 +50,7 @@ $todoList->todos()->update($id, [...]);
 
 ## Complete a to-do
 
-```
+```php
 $todo->complete();
 
 // Or complete with ID.
@@ -59,7 +59,7 @@ $todoList->todos()->complete($id);
 
 ## Uncomplete a to-do
 
-```
+```php
 $todo->uncomplete();
 
 // Or uncomplete with ID.
@@ -68,7 +68,7 @@ $todoList->todos()->uncomplete($id);
 
 ## Reposition a to-do
 
-```
+```php
 $todo->reposition(2);
 
 // Or reposition with ID.

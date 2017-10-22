@@ -2,19 +2,19 @@
 
 ## List messages
 
-```
+```php
 $messages = $project->messageBoard()->messages()->index();
 ```
 
 ### Show a message
 
-```
+```php
 $message = $project->messageBoard()->messages()->show($id);
 ```
 
 ### Create a new message
 
-```
+```php
 $message = $project->messageBoard()->messages()->store([
     'subject' => 'Kickoff',
     'status' => 'active',
@@ -25,7 +25,7 @@ $message = $project->messageBoard()->messages()->store([
 
 ### Update a message
 
-```
+```php
 $message->update([
     'subject' => 'Spin-down',
     'content' => 'Oops, we lost that client.',
@@ -38,7 +38,7 @@ $project->messageBoard()->messages()->update($id, [...]);
 
 ### Delete a message
 
-```
+```php
 $message->destroy();
 
 // Or destroy with ID.

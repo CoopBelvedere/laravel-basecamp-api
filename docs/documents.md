@@ -2,19 +2,19 @@
 
 ## List documents
 
-```
+```php
 $documents = $project->vault()->documents()->index();
 ```
 
 ## Show a document
 
-```
+```php
 $document = $project->vault()->document()->show($id);
 ```
 
 ## Create a new document
 
-```
+```php
 $document = $project->vault()->documents()->store([
     'title' => 'New Hire Info',
     'content' => '<div><strong>Getting started</strong></div>',
@@ -24,7 +24,7 @@ $document = $project->vault()->documents()->store([
 
 ## Update a document
 
-```
+```php
 $document->update([
     'title' => 'New Hire Information',
     'content' => '<div><strong>Let\'s get started</strong></div>',
@@ -36,7 +36,7 @@ $project->vault()->documents()->update($id, [...]);
 
 ## Delete a document
 
-```
+```php
 $document->destroy();
 
 // Or destroy with ID.

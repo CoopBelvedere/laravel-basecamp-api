@@ -34,7 +34,7 @@ Add a `user-agent` to identify your app in your `config/basecamp.php` file.
 Retrieve your basecamp id, base uri (href), token and refresh token and
 initialize the API wrapper.
 
-```
+```php
 Basecamp::init([
     'id' => $user->basecamp_id,
     'href' => $user->href,
@@ -48,7 +48,7 @@ Basecamp::init([
 The client uses a Laravel Filesystem cache strategy by default. You can
 override this with your preferred Laravel cache store:
 
-```
+```php
 Basecamp::setCache(Cache::store('redis'));
 ```
 
@@ -57,7 +57,7 @@ Basecamp::setCache(Cache::store('redis'));
 You can optionally add an array of middlewares to the Guzzle Handler Stack.
 Here is an example for logging a request:
 
-```
+```php
 Basecamp::setMiddlewares([
     \GuzzleHttp\Middleware::log(
         Log::getMonolog(),
@@ -75,7 +75,7 @@ The event returns 2 parameters, your basecamp user id and the new access token.
 
 You can add something like this in your `EventServiceProvider.php` boot method:
 
-```
+```php
 Event::listen('basecamp.refreshed_token', function ($id, $token) {
     $user = \App\User::where('basecamp_id', $id)->first();
     $user->access_token = $token->access_token;
@@ -88,7 +88,7 @@ Event::listen('basecamp.refreshed_token', function ($id, $token) {
 
 Most collection of resources in Basecamp can be paginated.
 
-```
+```php
 // Get projects.
 $projects = $basecamp->projects()->index();
 

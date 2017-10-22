@@ -2,7 +2,7 @@
 
 ## List schedule entries
 
-```
+```php
 // List all schedule entries
 $entries = $project->schedule()->entries()->index();
 
@@ -15,13 +15,13 @@ $entries = $project->schedule()->entries()->trashed();
 
 ### Show a schedule entry
 
-```
+```php
 $entry = $project->schedule()->entries()->show($id);
 ```
 
 ### Create a new schedule entry
 
-```
+```php
 $entry = $project->schedule()->entries()->store([
     'summary' => 'Important meeting',
     'starts_at' => '2017-10-28T00:00:00Z',
@@ -31,7 +31,7 @@ $entry = $project->schedule()->entries()->store([
 
 ### Update a schedule entry
 
-```
+```php
 $entry->update([
     'summary' => 'Important meeting',
     'starts_at' => '2017-10-28T00:00:00Z',
@@ -44,7 +44,7 @@ $project->schedule()->entries()->update($id, [...]);
 
 ### Delete a schedule entry
 
-```
+```php
 $entry->destroy();
 
 // Or destroy with ID.
