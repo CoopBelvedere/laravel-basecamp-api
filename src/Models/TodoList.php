@@ -10,6 +10,16 @@ class TodoList extends Recording
     use Commentable;
 
     /**
+     * List the to-do list groups.
+     *
+     * @return \Illuminate\Http\Collection
+     */
+    public function groups()
+    {
+        return Basecamp::todoListGroups($this->bucket->id, $this->id);
+    }
+
+    /**
      * List the to-dos.
      *
      * @return \Illuminate\Http\Collection

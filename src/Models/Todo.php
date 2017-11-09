@@ -45,7 +45,7 @@ class Todo extends Recording
     }
 
     /**
-     * Uncomplete the to-do.
+     * Reposition the to-do.
      *
      * @param  int  $position
      * @return string

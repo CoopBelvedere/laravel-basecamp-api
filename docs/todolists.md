@@ -7,10 +7,10 @@
 $todoLists = $project->todoSet()->todoLists()->index();
 
 // List archived to-do lists
-$projects = $project->todoSet()->todoLists()->archived();
+$todoLists = $project->todoSet()->todoLists()->archived();
 
 // List trashed to-do lists
-$projects = $project->todoSet()->todoLists()->trashed();
+$todoLists = $project->todoSet()->todoLists()->trashed();
 ```
 
 ## Show a to-do list

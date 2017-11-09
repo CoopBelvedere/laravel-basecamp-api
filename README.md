@@ -127,6 +127,7 @@ $projects = $basecamp->projects()->index($nextPage);
 - [Schedule entries](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/schedule_entries.md)
 - [Schedules](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/schedules.md)
 - [Templates](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/templates.md)
+- [To-do list groups](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/todolist_groups.md)
 - [To-do lists](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/todolists.md)
 - [To-dos](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/todos.md)
 - [To-do sets](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/todosets.md)
