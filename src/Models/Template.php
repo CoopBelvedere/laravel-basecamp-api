@@ -1,6 +1,7 @@
 <?php
 
 namespace Belvedere\Basecamp\Models;
+use Basecamp;
 
 class Template extends AbstractModel
 {
