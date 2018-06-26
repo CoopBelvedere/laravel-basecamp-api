@@ -53,8 +53,8 @@ Basecamp::templates()->destroy($id);
 
 ```php
 $projectConstruction = $template->projectConstructions()->store([
-    'name': 'Marketing ',
-    'description': '2016-2017 Strategy',
+    'name' => 'Marketing ',
+    'description' => '2016-2017 Strategy',
 ]);
 ```
 
