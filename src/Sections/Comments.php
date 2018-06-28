@@ -12,14 +12,18 @@ class Comments extends AbstractSection
     /**
      * Index all comments.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/recordings/%d/comments.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/recordings/%d/comments.json', $this->bucket, $this->parent);
 
-        $comments = $this->client->get($url);
+        $comments = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($comments, Comment::class);
     }

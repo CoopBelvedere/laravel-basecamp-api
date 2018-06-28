@@ -10,14 +10,18 @@ class Campfires extends AbstractSection
     /**
      * Index all campfires.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: 'chats.json';
+        $url = 'chats.json';
 
-        $campfires = $this->client->get($url);
+        $campfires = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($campfires, Campfire::class);
     }
@@ -40,14 +44,18 @@ class Campfires extends AbstractSection
     /**
      * Get a campfire lines.
      *
-     * @param  string $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function lines($nextPage = null)
+    public function lines($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/chats/%d/lines.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/chats/%d/lines.json', $this->bucket, $this->parent);
 
-        $lines = $this->client->get($url);
+        $lines = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ]
+        ]);
 
         return $this->indexResponse($lines, CampfireLine::class);
     }

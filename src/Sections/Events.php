@@ -9,14 +9,18 @@ class Events extends AbstractSection
     /**
      * Index all events.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/recordings/%d/events.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/recordings/%d/events.json', $this->bucket, $this->parent);
 
-        $events = $this->client->get($url);
+        $events = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($events, Event::class);
     }

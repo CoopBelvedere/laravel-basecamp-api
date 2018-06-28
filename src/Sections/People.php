@@ -9,14 +9,18 @@ class People extends AbstractSection
     /**
      * Get people.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: 'people.json';
+        $url = 'people.json';
 
-        $people = $this->client->get($url);
+        $people = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ]
+        ]);
 
         return $this->indexResponse($people, Person::class);
     }
@@ -25,14 +29,18 @@ class People extends AbstractSection
      * Get people on a project.
      *
      * @param  int     $bucket
-     * @param  string  $nextPage
+     * @param  int     $page
      * @return \Illuminate\Support\Collection
      */
-    public function inProject($bucket, $nextPage = null)
+    public function inProject($bucket, $page = null)
     {
-        $url = $nextPage ?: sprintf('projects/%d/people.json', $bucket);
+        $url = sprintf('projects/%d/people.json', $bucket);
 
-        $people = $this->client->get($url);
+        $people = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($people, Person::class);
     }
@@ -59,14 +67,18 @@ class People extends AbstractSection
     /**
      * Get pingable people.
      *
-     * @param  string  $nextPage
+     * @param  string  $page
      * @return \Illuminate\Support\Collection
      */
-    public function pingable($nextPage = null)
+    public function pingable($page = null)
     {
-        $url = $nextPage ?: 'circles/people.json';
+        $url = 'circles/people.json';
 
-        $people = $this->client->get($url);
+        $people = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($people, Person::class);
     }

@@ -9,14 +9,18 @@ class Webhooks extends AbstractSection
     /**
      * Index all webhooks.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/webhooks.json', $this->bucket);
+        $url = sprintf('buckets/%d/webhooks.json', $this->bucket);
 
-        $webhooks = $this->client->get($url);
+        $webhooks = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ]
+        ]);
 
         return $this->indexResponse($webhooks, Webhook::class)->map(function ($webhook) {
             $webhook->inContext($this->bucket);

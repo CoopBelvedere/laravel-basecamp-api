@@ -9,14 +9,18 @@ class MessageTypes extends AbstractSection
     /**
      * Index all message types.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/categories.json', $this->bucket);
+        $url = sprintf('buckets/%d/categories.json', $this->bucket);
 
-        $messageTypes = $this->client->get($url);
+        $messageTypes = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($messageTypes, MessageType::class);
     }

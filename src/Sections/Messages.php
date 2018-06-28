@@ -12,14 +12,18 @@ class Messages extends AbstractSection
     /**
      * Index all messages.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/message_boards/%d/messages.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/message_boards/%d/messages.json', $this->bucket, $this->parent);
 
-        $messages = $this->client->get($url);
+        $messages = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($messages, Message::class);
     }

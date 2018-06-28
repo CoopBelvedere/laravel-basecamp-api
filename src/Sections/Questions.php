@@ -9,14 +9,18 @@ class Questions extends AbstractSection
     /**
      * Index all the questions.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/questionnaires/%d/questions.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/questionnaires/%d/questions.json', $this->bucket, $this->parent);
 
-        $questions = $this->client->get($url);
+        $questions = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($questions, Question::class);
     }

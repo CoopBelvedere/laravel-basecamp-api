@@ -9,14 +9,18 @@ class ClientCorrespondences extends AbstractSection
     /**
      * Index all correspondences.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/client/correspondences.json', $this->bucket);
+        $url = sprintf('buckets/%d/client/correspondences.json', $this->bucket);
 
-        $correspondences = $this->client->get($url);
+        $correspondences = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($correspondences, ClientCorrespondence::class);
     }

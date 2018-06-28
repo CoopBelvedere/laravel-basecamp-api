@@ -9,16 +9,19 @@ class Templates extends AbstractSection
     /**
      * Index all templates.
      *
-     * @param  string  $nextPage
+     * @param  int     $page
      * @param  string  $status
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null, $status = null)
+    public function index($page = null, $status = null)
     {
-        $url = $nextPage ?: 'templates.json';
+        $url = 'templates.json';
 
         $templates = $this->client->get($url, [
-            'query' => ['status' => $status],
+            'query' => [
+                'status' => $status,
+                'page' => $page,
+            ],
         ]);
 
         return $this->indexResponse($templates, Template::class);
@@ -27,23 +30,23 @@ class Templates extends AbstractSection
     /**
      * Index archived templates.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function archived($nextPage = null)
+    public function archived($page = null)
     {
-        return $this->index($nextPage, 'archived');
+        return $this->index($page, 'archived');
     }
 
     /**
      * Index trashed templates.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function trashed($nextPage = null)
+    public function trashed($page = null)
     {
-        return $this->index($nextPage, 'trashed');
+        return $this->index($page, 'trashed');
     }
 
     /**

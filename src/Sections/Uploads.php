@@ -12,14 +12,18 @@ class Uploads extends AbstractSection
     /**
      * Index all the uploads.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/vaults/%d/uploads.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/vaults/%d/uploads.json', $this->bucket, $this->parent);
 
-        $uploads = $this->client->get($url);
+        $uploads = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->response($uploads, Upload::class);
     }

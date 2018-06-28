@@ -9,14 +9,18 @@ class ClientApprovals extends AbstractSection
     /**
      * Index all approvals.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/client/approvals.json', $this->bucket);
+        $url = sprintf('buckets/%d/client/approvals.json', $this->bucket);
 
-        $approvals = $this->client->get($url);
+        $approvals = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($approvals, ClientApproval::class);
     }

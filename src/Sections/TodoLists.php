@@ -9,16 +9,19 @@ class TodoLists extends AbstractSection
     /**
      * Index all to-do lists.
      *
-     * @param  string  $nextPage
+     * @param  int     $page
      * @param  string  $status
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null, $status = null)
+    public function index($page = null, $status = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/todosets/%d/todolists.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/todosets/%d/todolists.json', $this->bucket, $this->parent);
 
         $todolists = $this->client->get($url, [
-            'query' => ['status' => $status],
+            'query' => [
+                'status' => $status,
+                'page' => $page,
+            ],
         ]);
 
         return $this->indexResponse($todolists, TodoList::class);
@@ -27,23 +30,23 @@ class TodoLists extends AbstractSection
     /**
      * Index archived to-do lists.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function archived($nextPage = null)
+    public function archived($page = null)
     {
-        return $this->index($nextPage, 'archived');
+        return $this->index($page, 'archived');
     }
 
     /**
      * Index trashed to-do lists.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function trashed($nextPage = null)
+    public function trashed($page = null)
     {
-        return $this->index($nextPage, 'trashed');
+        return $this->index($page, 'trashed');
     }
 
     /**

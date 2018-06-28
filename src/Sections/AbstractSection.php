@@ -29,20 +29,6 @@ abstract class AbstractSection
     protected $parent;
 
     /**
-     * The section next page link.
-     *
-     * @var string
-     */
-    protected $nextPage;
-
-    /**
-     * The section total.
-     *
-     * @var string
-     */
-    protected $total;
-
-    /**
      * Assign the client to the Basecamp API Section.
      *
      * @param  \GuzzleHttp\Client $client
@@ -87,7 +73,7 @@ abstract class AbstractSection
         $link = $response->getHeader('Link')[0] ?? null;
         $total = $response->getHeader('X-Total-Count')[0] ?? null;
 
-        $collection->setPagination($this->formatLink($link), (int) $total);
+        $collection->setPagination($this->getPageNumber($link), (int) $total);
 
         return $collection;
     }
@@ -98,12 +84,16 @@ abstract class AbstractSection
      * @param  string  $link
      * @return string
      */
-    protected function formatLink($link)
+    protected function getPageNumber($link)
     {
-        if ($link)
-            return str_replace(
+        if ($link) {
+            $url = str_replace(
                 'rel="next"', '', preg_replace('/[<>;\ ]/', '', $link)
             );
+            parse_str(parse_url($url, PHP_URL_QUERY), $output);
+
+            return (int) $output['page'];
+        }
 
         return null;
     }

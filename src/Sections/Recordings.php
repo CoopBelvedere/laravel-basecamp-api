@@ -11,15 +11,17 @@ class Recordings extends AbstractSection
      *
      * @param  string  $type
      * @param  array   $parameters
+     * @param  int     $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($type, array $parameters = array(), $nextPage = null)
+    public function index($type, array $parameters = array(), $page = null)
     {
-        $url = $nextPage ?: 'projects/recordings.json';
+        $url = 'projects/recordings.json';
 
         $recordings = $this->client->get($url, [
             'query' => array_merge([
                 'type' => $type,
+                'page' => $page,
             ], $parameters)
         ]);
 

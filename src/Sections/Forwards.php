@@ -12,14 +12,18 @@ class Forwards extends AbstractSection
     /**
      * Index all forwards.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/inboxes/%d/forwards.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/inboxes/%d/forwards.json', $this->bucket, $this->parent);
 
-        $forwards = $this->client->get($url);
+        $forwards = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ]
+        ]);
 
         return $this->indexResponse($forwards, Forward::class);
     }

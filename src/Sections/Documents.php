@@ -12,14 +12,18 @@ class Documents extends AbstractSection
     /**
      * Index all documents.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/vaults/%d/documents.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/vaults/%d/documents.json', $this->bucket, $this->parent);
 
-        $documents = $this->client->get($url);
+        $documents = $this->client->get($url, [
+            'query' => [
+                'page' => $page,
+            ],
+        ]);
 
         return $this->indexResponse($documents, Document::class);
     }

@@ -9,14 +9,16 @@ class ClientReplies extends AbstractSection
     /**
      * Index all client replies.
      *
-     * @param  string  $nextPage
+     * @param  int  $page
      * @return \Illuminate\Support\Collection
      */
-    public function index($nextPage = null)
+    public function index($page = null)
     {
-        $url = $nextPage ?: sprintf('buckets/%d/client/recordings/%d/replies.json', $this->bucket, $this->parent);
+        $url = sprintf('buckets/%d/client/recordings/%d/replies.json', $this->bucket, $this->parent);
 
-        $replies = $this->client->get($url);
+        $replies = $this->client->get($url, [
+            'page' => $page,
+        ]);
 
         return $this->indexResponse($replies, ClientReply::class);
     }
