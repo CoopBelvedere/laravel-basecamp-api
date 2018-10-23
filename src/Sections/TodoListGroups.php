@@ -73,7 +73,7 @@ class TodoListGroups extends AbstractSection
     public function store(array $data)
     {
         $todolistGroup = $this->client->post(
-            sprintf('buckets/%d/todosets/%d/groups.json', $this->bucket, $this->parent),
+            sprintf('buckets/%d/todolists/%d/groups.json', $this->bucket, $this->parent),
             [
                 'json' => $data,
             ]
