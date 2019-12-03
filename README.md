@@ -60,7 +60,7 @@ Here is an example for logging a request:
 ```php
 Basecamp::setMiddlewares([
     \GuzzleHttp\Middleware::log(
-        Log::getMonolog(),
+        Log::getLogger(),
         new \GuzzleHttp\MessageFormatter('{method} {uri} HTTP/{version} {req_body}')
     )
 ]);
