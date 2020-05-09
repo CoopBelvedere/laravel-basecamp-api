@@ -52,9 +52,11 @@ Basecamp::templates()->destroy($id);
 ## Create a project construction
 
 ```php
-$projectConstruction = $template->projectConstructions()->store([
-    'name' => 'Marketing ',
-    'description' => '2016-2017 Strategy',
+$projectConstruction = $template->projectConstructions()->store([ 
+  'project' => [ 
+        'name' => 'Marketing ',
+        'description' => '2016-2017 Strategy',
+   ]
 ]);
 ```
 
