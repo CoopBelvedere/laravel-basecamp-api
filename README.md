@@ -17,9 +17,6 @@ behalf of one user. To receive an access token, you can use
 After you save the access token and the desired Basecamp3 account, you can now
 create an instance of the API wrapper.
 
-This example app should help you get started:
-[Basecamp Example App](https://github.com/coopbelvedere/basecamp-example-app)
-
 ## Installation
 
 ```
