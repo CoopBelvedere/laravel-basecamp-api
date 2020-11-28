@@ -11,6 +11,9 @@ $todos = $todoList->todos()->archived();
 
 // List trashed to-dos
 $todos = $todoList->todos()->trashed();
+
+// List completed to-dos
+$todos = $todoList->todos()->completed();
 ```
 
 ## Show a to-do

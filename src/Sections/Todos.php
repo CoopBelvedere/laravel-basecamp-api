@@ -13,7 +13,7 @@ class Todos extends AbstractSection
      * @param  string  $status
      * @return \Illuminate\Support\Collection
      */
-    public function index($page = null, $status = null)
+    public function index($page = null, $status = null, $completed = null)
     {
         $url = sprintf('buckets/%d/todolists/%d/todos.json', $this->bucket, $this->parent);
 
@@ -21,6 +21,7 @@ class Todos extends AbstractSection
             'query' => [
                 'status' => $status,
                 'page' => $page,
+                'completed' => $completed ? 'true' : null,
             ],
         ]);
 
@@ -47,6 +48,18 @@ class Todos extends AbstractSection
     public function trashed($page = null)
     {
         return $this->index($page, 'trashed');
+    }
+
+    /**
+     * Index completed to-dos.
+     *
+     * @param  int  $page
+     * @param  string  $status
+     * @return \Illuminate\Support\Collection
+     */
+    public function completed($page = null, $status = null)
+    {
+        return $this->index($page, $status, 'completed');
     }
 
     /**
