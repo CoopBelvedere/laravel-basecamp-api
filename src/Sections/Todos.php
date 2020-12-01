@@ -11,6 +11,7 @@ class Todos extends AbstractSection
      *
      * @param  int     $page
      * @param  string  $status
+     * @param  string  $completed
      * @return \Illuminate\Support\Collection
      */
     public function index($page = null, $status = null, $completed = null)
@@ -53,7 +54,7 @@ class Todos extends AbstractSection
     /**
      * Index completed to-dos.
      *
-     * @param  int  $page
+     * @param  int     $page
      * @param  string  $status
      * @return \Illuminate\Support\Collection
      */
