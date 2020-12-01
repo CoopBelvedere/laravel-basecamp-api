@@ -29,16 +29,32 @@ Add a `user-agent` to identify your app in your `config/basecamp.php` file.
 ## Usage
 
 Retrieve your basecamp id, base uri (href), token and refresh token and
-initialize the API wrapper.
+initialize the API wrapper. Here's a basic example on the `routes/web.php`
+file to get you started.
 
 ```php
-Basecamp::init([
-    'id' => $user->basecamp_id,
-    'href' => $user->href,
-    'token' => $user->token,
-    'refresh_token' => $user->refresh_token,
-]);
+Route::get('/login/basecamp', function () {
+    return Socialite::driver('37signals')->redirect();
+});
+
+Route::get('/login/basecamp/callback', function () {
+    $user = Socialite::driver('37signals')->user();
+
+    Basecamp::init([
+        'id' => $user->user['accounts'][0]['id'],
+        'href' => $user->user['accounts'][0]['href'],
+        'token' => $user->token,
+        'refresh_token' => $user->refreshToken,
+    ]);
+
+    $projects = Basecamp::projects();
+    dd($projects->index());
+});
 ```
+
+**NOTE:** You shouldn't initialize the API in the callback route, this
+is only to show you what data to keep from the socialite user.
+
 
 ### Caching
 
@@ -87,7 +103,7 @@ Most collection of resources in Basecamp can be paginated.
 
 ```php
 // Get projects.
-$projects = $basecamp->projects()->index();
+$projects = Basecamp::projects()->index();
 
 // Get total of projects
 $projects->total();
@@ -96,7 +112,7 @@ $projects->total();
 $nextPage = $projects->nextPage();
 
 // Call the next page of projects.
-$projects = $basecamp->projects()->index($nextPage);
+$projects = Basecamp::projects()->index($nextPage);
 ```
 
 ### Resources documentation
