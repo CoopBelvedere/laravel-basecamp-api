@@ -45,7 +45,7 @@ class Recordings extends AbstractSection
      * Archived a recording.
      *
      * @param int $id
-     * @throws GuzzleException
+     * @return string
      */
     public function archived(int $id)
     {
