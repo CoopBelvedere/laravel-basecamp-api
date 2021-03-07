@@ -42,15 +42,28 @@ class Recordings extends AbstractSection
     }
     
     /**
-     * Archived a recording.
+     * Archive a recording.
      *
      * @param int $id
      * @return string
      */
-    public function archived(int $id)
+    public function archive(int $id)
     {
         return $this->client->put(
             sprintf('buckets/%d/recordings/%d/status/archived.json', $this->bucket, $id)
+        );
+    }
+   
+    /**
+     * Archive a recording.
+     *
+     * @param int $id
+     * @return string
+     */
+    public function unarchive(int $id)
+    {
+        return $this->client->put(
+            sprintf('buckets/%d/recordings/%d/status/active.json', $this->bucket, $id)
         );
     }
 }
