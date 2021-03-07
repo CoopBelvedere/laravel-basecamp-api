@@ -24,3 +24,21 @@ $recording->destroy();
 // Or destroy with ID
 Basecamp::recordings($project->id)->destroy($id);
 ```
+
+## Archive a recording
+
+```php
+$recording->archive();
+
+// Or archive with ID
+Basecamp::recordings($project->id)->archive($id);
+```
+
+## Unarchive a recording
+
+```php
+$recording->unarchive();
+
+// Or archive with ID
+Basecamp::recordings($project->id)->unarchive($id);
+```
