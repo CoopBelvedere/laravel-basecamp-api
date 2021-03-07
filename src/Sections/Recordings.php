@@ -55,7 +55,7 @@ class Recordings extends AbstractSection
     }
    
     /**
-     * Archive a recording.
+     * Unarchive a recording.
      *
      * @param int $id
      * @return string
