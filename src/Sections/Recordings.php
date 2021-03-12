@@ -66,4 +66,39 @@ class Recordings extends AbstractSection
             sprintf('buckets/%d/recordings/%d/status/active.json', $this->bucket, $id)
         );
     }
+    
+    /**
+     * Get subscription
+     *
+     * @param int $id
+     * @throws GuzzleException
+     */
+    public function getSubscription(int $id)
+    {
+        $recordings = $this->client->get(sprintf('buckets/%d/recordings/%d/subscription.json', $this->bucket, $id));
+
+        return $this->response($recordings);
+    }
+
+    /**
+     * Update subscription
+     *
+     * @param int $id
+     * @param int $unsubscriptions_id unsubscribers for the recording
+     * @param int $subscriptions subscribers for the recording
+     * @return string
+     * @throws GuzzleException
+     */
+    public function updateSubscriptions(int $id, int $unsubscriptions_id = null, int $subscriptions = null): string
+    {
+        $param = [
+            'query' => [
+                'unsubscriptions' => $unsubscriptions_id,
+                'subscriptions' => $subscriptions
+            ]
+        ];
+        $recordings = $this->client->put(sprintf('buckets/%d/recordings/%d/subscription.json', $this->bucket, $id), $param);
+
+        return $this->indexResponse($recordings, Recording::class);
+    }
 }
