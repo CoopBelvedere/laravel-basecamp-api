@@ -139,6 +139,7 @@ $projects = Basecamp::projects()->index($nextPage);
 - [Recordings](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/recordings.md)
 - [Schedule entries](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/schedule_entries.md)
 - [Schedules](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/schedules.md)
+- [Subscriptions](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/subscriptions.md)
 - [Templates](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/templates.md)
 - [To-do list groups](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/todolist_groups.md)
 - [To-do lists](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/todolists.md)

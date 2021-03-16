@@ -17,6 +17,16 @@ class Recording extends AbstractModel
     }
 
     /**
+     * Get the subscription info.
+     *
+     * @return \Belvedere\Basecamp\Models\Subscription
+     */
+    public function subscriptions()
+    {
+        return Basecamp::subscriptions($this->bucket->id, $this->id);
+    }
+
+    /**
      * Trash the recording.
      *
      * @return \Illuminate\Http\Collection
