@@ -8,6 +8,24 @@ An API wrapper for Basecamp 3.
 
 Visit https://launchpad.37signals.com/integrations and register your app.
 
+Add the credentials in your .env file as:
+
+```
+THIRTYSEVENSIGNALS_CLIENT_ID=your_client_id
+THIRTYSEVENSIGNALS_CLIENT_SECRET=your_client_secret_key
+THIRTYSEVENSIGNALS_REDIRECT_URI=http://localhost/login/basecamp/callback
+```
+
+And add the config variables to your `config/services.php` file:
+
+```
+    '37signals' => [
+        'client_id' => env('THIRTYSEVENSIGNALS_CLIENT_ID'),
+        'client_secret' => env('THIRTYSEVENSIGNALS_CLIENT_SECRET'),
+        'redirect' => env('THIRTYSEVENSIGNALS_REDIRECT_URI')
+    ],
+```
+
 ### OAuth2
 
 The Basecamp3 API only supports 3-legged authentication and makes calls on
@@ -17,6 +35,30 @@ behalf of one user. To receive an access token, you can use
 After you save the access token and the desired Basecamp3 account, you can now
 create an instance of the API wrapper.
 
+```
+composer require socialiteproviders/37signals
+```
+
+Add the socialite service provider to your `config/app.php` `providers` array key:
+
+```php
+'providers' => [
+    ...
+    \SocialiteProviders\Manager\ServiceProvider::class,
+]
+```
+
+Add the socialite event listener in your `app/Providers/EventServiceProvider.php` `listen` property:
+
+```php
+protected $listen = [
+    ...
+    \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+        \SocialiteProviders\ThirtySevenSignals\ThirtySevenSignalsExtendSocialite::class.'@handle',
+    ],
+];
+```
+
 ## Installation
 
 ```
@@ -25,6 +67,7 @@ php artisan vendor:publish --provider="Belvedere\Basecamp\BasecampServiceProvide
 ```
 
 Add a `user-agent` to identify your app in your `config/basecamp.php` file.
+This is *mandatory* or any request will return a 400 error.
 
 ## Usage
 
@@ -53,7 +96,8 @@ Route::get('/login/basecamp/callback', function () {
 ```
 
 **NOTE:** You shouldn't initialize the API in the callback route, this
-is only to show you what data to keep from the socialite user.
+is only to show you what data to keep from the socialite user. Save this data in the database,
+and/or the session to keep the connection active.
 
 
 ### Caching
