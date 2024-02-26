@@ -171,6 +171,7 @@ $projects = Basecamp::projects()->index($nextPage);
 - [Documents](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/documents.md)
 - [Events](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/events.md)
 - [Forwards](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/forwards.md)
+- [Needles](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/needles.md)
 - [Inboxes](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/inboxes.md)
 - [Message Boards](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/message_boards.md)
 - [Message types](https://github.com/coopbelvedere/laravel-basecamp-api/blob/master/docs/message_types.md)

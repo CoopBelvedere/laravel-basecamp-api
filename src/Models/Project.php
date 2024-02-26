@@ -133,6 +133,16 @@ class Project extends AbstractModel
     }
 
     /**
+     * Get the project's client needle state.
+     *
+     * @return \Illuminate\Http\Collection
+     */
+    public function needle()
+    {
+        return Basecamp::needles($this->id);
+    }
+
+    /**
      * Update the project.
      *
      * @param  array  $data

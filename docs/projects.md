@@ -26,6 +26,7 @@ $project->schedule();
 $project->questionnaire();
 $project->vault();
 $project->inbox();
+$project->needle();
 
 // Client items
 $project->clientApprovals();
